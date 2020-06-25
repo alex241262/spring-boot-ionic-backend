@@ -2,9 +2,17 @@ package com.alexandre.cursomc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity  //mapeamento de classe catedoria
 public class Categoria implements Serializable {	
 	private static final long serialVersionUID = 1L;//numero de versao padrao numero de classe 1
 	
+	@Id   //mapeamento de classe catedoria
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  //mapeamento de classe catedoria
 	//inicio atributos
 	private Integer id;
 	private String nome;
