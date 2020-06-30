@@ -1,11 +1,14 @@
 package com.alexandre.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity  //mapeamento de classe catedoria
 public class Categoria implements Serializable {	
@@ -17,6 +20,9 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 	//fim atributos
+	
+	@ManyToMany(mappedBy = "categorias")
+	private List<Produto> produtos = new ArrayList<>(); 
 	
 	public Categoria() {//construto vazio( com ele instacio um projeto sem jogar nada nos atributos
 	}
@@ -42,7 +48,14 @@ public class Categoria implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}//fim get set
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
 
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+	
 	@Override
 	public int hashCode() {//operações para compara objetos por valor
 		final int prime = 31;
