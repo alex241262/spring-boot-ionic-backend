@@ -5,10 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+//import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity  //mapeamento de classe catedoria
 public class Categoria implements Serializable {	
@@ -21,9 +27,10 @@ public class Categoria implements Serializable {
 	private String nome;
 	//fim atributos
 	
-	@ManyToMany(mappedBy = "categorias")
-	private List<Produto> produtos = new ArrayList<>(); 
-	
+	//@JsonManagedReference
+	@ManyToMany(mappedBy = "categorias") 			
+	private List<Produto> produtos = new ArrayList<>();
+
 	public Categoria() {//construto vazio( com ele instacio um projeto sem jogar nada nos atributos
 	}
 
@@ -36,7 +43,6 @@ public class Categoria implements Serializable {
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -44,14 +50,13 @@ public class Categoria implements Serializable {
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}//fim get set
+	
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
-
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
